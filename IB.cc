@@ -4,12 +4,16 @@
 
 #include <time.h>
 #include <assert.h>
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
-#include <fstream.h>
+#include <fstream>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
+
 #include "IB.h"
+
+using namespace std;
 
 /* Constructor */
 
@@ -218,7 +222,7 @@ void IB::initialize_cv(Matrix *p_Docs, char * seeding_file)
     }
 }
 
-void IB::well_separated_centroids(Matrix *p_Docs, int choice=1)
+void IB::well_separated_centroids(Matrix *p_Docs, int choice)
 {
   
 }

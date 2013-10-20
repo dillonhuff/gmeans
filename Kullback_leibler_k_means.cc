@@ -4,12 +4,15 @@
 
 #include <time.h>
 #include <assert.h>
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
-#include <fstream.h>
+#include <fstream>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 #include "Kullback_leibler_k_means.h"
+
+using namespace std;
 
 /* Constructor */
 
@@ -336,7 +339,7 @@ void Kullback_leibler_k_means::initialize_cv(Matrix *p_Docs, char * seeding_file
 
   if (f_v_times >0)
     {
-      quality_change_mat = new (float *)[n_Clusters];
+      quality_change_mat = new float*[n_Clusters];
       for (int j = 0; j < n_Clusters; j++)
 	quality_change_mat [j] = new float[n_Docs]; 
       memory_consume+=(n_Clusters*n_Docs)*sizeof(float);
@@ -346,7 +349,7 @@ void Kullback_leibler_k_means::initialize_cv(Matrix *p_Docs, char * seeding_file
   memory_consume+=p_Docs->GetMemoryUsed();
 }
 
-void Kullback_leibler_k_means::well_separated_centroids(Matrix *p_Docs, int choice=1)
+void Kullback_leibler_k_means::well_separated_centroids(Matrix *p_Docs, int choice)
 {
 int i, j, k, max_ind, *cv = new int [n_Clusters];
 float max, cos_sum;
@@ -607,11 +610,11 @@ float Kullback_leibler_k_means::K_L_first_variation(Matrix *p_Docs)
 {
 
   int i, j, max_change_index=-1;
-  float *change= new float [f_v_times+i_k_means_times], *total_change =new float [f_v_times+i_k_means_times], max_change=0.0, pre_change;
+  float *change= new float [f_v_times+i_k_means_times], *total_change = new float [f_v_times+i_k_means_times], max_change=0.0, pre_change;
   float *old_prior = new float[n_Clusters], *old_C_log_C = new float[n_Clusters];
-  one_step *track = new (one_step) [f_v_times+i_k_means_times]; 
-  bool *been_converted= new bool [n_Clusters];
-  int *original_Cluster =new int [f_v_times+i_k_means_times], *old_ClusterSize =new int [n_Clusters];
+  one_step *track = new one_step[f_v_times+i_k_means_times]; 
+  bool *been_converted = new bool[n_Clusters];
+  int *original_Cluster = new int[f_v_times+i_k_means_times], *old_ClusterSize = new int[n_Clusters];
 
 
   for (i = 0; i < n_Clusters; i++)
@@ -698,12 +701,12 @@ float Kullback_leibler_k_means::K_L_first_variation(Matrix *p_Docs)
     }
   cout<<endl;
   
-  if ( dumpswitch)
+  if ( dumpswitch) {
     if (max_change < fv_threshold)
       cout<<"Max change of objective fun. "<<max_change<<" occures at step "<<max_change_index+1<<endl;
     else
       cout<<"No change of objective fun."<<endl;
-  
+  }
   for (i=0; i<n_Clusters; i++)
     been_converted[i] =false;
   if ( max_change >= fv_threshold)
@@ -975,7 +978,7 @@ float Kullback_leibler_k_means::Split_Clusters(Matrix *p_Docs, int worst_vector,
       new_ClusterSize = new int [n_Clusters];
       new_cluster_quality = new float [n_Clusters];
       new_prior = new float [n_Clusters];
-      new_Concept_Vector = new (float*) [n_Clusters];
+      new_Concept_Vector = new float*[n_Clusters];
       for (i = 0; i <n_Clusters; i++)
 	new_Concept_Vector[i] = new float [n_Words];
       
@@ -1025,7 +1028,7 @@ float Kullback_leibler_k_means::Split_Clusters(Matrix *p_Docs, int worst_vector,
       compute_sum_log(n_Clusters-1);
       compute_sum_log(worst_vector_s_cluster_ID);
 
-      new_Sim_Mat = new (float *)[n_Clusters];
+      new_Sim_Mat = new float*[n_Clusters];
       for ( j = 0; j < n_Clusters; j++)
 	new_Sim_Mat[j] = new float[n_Docs]; 
       for (i=0; i<n_Clusters-1; i++)
@@ -1047,7 +1050,7 @@ float Kullback_leibler_k_means::Split_Clusters(Matrix *p_Docs, int worst_vector,
       
       if ( f_v_times > 0)
 	{
-	  new_quality_change_mat = new (float *)[n_Clusters];
+	  new_quality_change_mat = new float*[n_Clusters];
 	  for ( j = 0; j < n_Clusters; j++)
 	    new_quality_change_mat [j] = new float[n_Docs]; 
 	  update_quality_change_mat (p_Docs, worst_vector_s_cluster_ID);

@@ -5,9 +5,12 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <math.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
+
 #include "Matrix.h"
+
+using namespace std;
 
 Matrix::Matrix(int r, int c)
 {
