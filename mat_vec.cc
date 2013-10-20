@@ -3,9 +3,11 @@
 	Copyright(c) 2003 Yuqiang Guan 
 */
 
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 #include "mat_vec.h"
+
+using namespace std;
 
 /* The procedure dqrbasis outputs an orthogonal basis spanned by the rows
    of matrix a (using the QR Factorization of a ).  

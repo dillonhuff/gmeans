@@ -4,10 +4,12 @@
 
 #include <assert.h>
 #include <stdlib.h>
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 #include "SparseMatrix.h"
 
+
+using namespace std;
 
 SparseMatrix::SparseMatrix(int row, int col, int nz, float *val, int *rowind, int *colptr) : Matrix (row, col)
 {
@@ -154,7 +156,7 @@ void SparseMatrix::right_dom_SV(int *cluster, int *cluster_size, int n_Clusters,
   int *AtA_rowind =NULL, *AtA_colptr=NULL;
   float *AtA_val =NULL;
   float **A_t_A;
-  A_t_A =new (float*) [n_row];
+  A_t_A = new float*[n_row];
   for (i=0; i<n_row; i++)
     A_t_A [i] = new float [n_row];
 

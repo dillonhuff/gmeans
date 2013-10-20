@@ -5,10 +5,12 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <math.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 
 #include "DenseMatrix.h"
+
+using namespace std;
 
 DenseMatrix::DenseMatrix ( int row, int col, float ** val) : Matrix (row, col)
   /* m_row, m_col, and m_val give the dimensionality and entries of matrix.
@@ -123,7 +125,7 @@ void DenseMatrix::right_dom_SV(int *cluster, int *cluster_size, int n_Clusters, 
   for (i=1; i<=n_Clusters; i++)
     pointer[i] = pointer[i-1] + cluster_size[i-1];
 
-  A_t_A =new (float*) [m_row];
+  A_t_A =new float*[m_row];
   for (i=0; i<m_row; i++)
     A_t_A [i] = new float [m_row];
 

@@ -4,9 +4,9 @@
 
 #include <time.h>
 #include <assert.h>
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
-#include <fstream.h>
+#include <fstream>
 #include <string.h>
 #include <math.h>
 #include "Euclidean_k_means.h"

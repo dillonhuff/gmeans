@@ -10,7 +10,9 @@
 #include "DenseMatrix.h"
 #include "RandomGenerator.h"
 #include "Constants.h"
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
 
 extern long memory_consume;
 

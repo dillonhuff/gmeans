@@ -5,13 +5,16 @@
 
 #include <time.h>
 #include <assert.h>
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
-#include <fstream.h>
+#include <stdlib.h>
+#include <fstream>
 #include <string.h>
 #include <math.h>
 #include "mat_vec.h"
 #include "Gmeans.h"
+
+using namespace std;
 
 Gmeans::Gmeans(Matrix *p_Docs, int cluster[], int ini_num_clusters, int sim_est_start,
 		    float omiga,  bool random_seeding, int seed, float epsilon) 
@@ -221,7 +224,7 @@ void Gmeans::neg_pos_seperation(Matrix *p_Docs)
 	Cluster[i] = 2*Cluster[i]+1;
     }
   
-  new_Concept_Vector = new (float*) [2*n_Clusters];
+  new_Concept_Vector = new float*[2*n_Clusters];
   for (i = 0; i <2*n_Clusters; i++)
     new_Concept_Vector[i] = new float [n_Words];
 

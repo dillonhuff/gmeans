@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 #include <time.h>
 #include "tools.h"
+
+using namespace std;
 
 void print_help()
 {
@@ -205,7 +207,7 @@ int* read_mat(char *fname, dense_mat *mat, int & n_Empty_Docs, int format)
       inputfile >>mat->n_row>> mat->n_col;
       mat->n_nz = mat->n_row * mat->n_col;
       
-      mat->val = new (float*) [mat->n_row];
+      mat->val = new float*[mat->n_row];
       for (i=0; i<mat->n_row; i++)
 	mat->val[i]= new float [mat->n_col];
       
@@ -223,7 +225,7 @@ int* read_mat(char *fname, dense_mat *mat, int & n_Empty_Docs, int format)
       inputfile >>mat->n_col>> mat->n_row;
       mat->n_nz = mat->n_row * mat->n_col;
       
-      mat->val = new (float*) [mat->n_row];
+      mat->val = new float*[mat->n_row];
       for (i=0; i<mat->n_row; i++)
 	mat->val[i]= new float [mat->n_col];
 

@@ -16,6 +16,8 @@
 
 #define MAX_VER_DIGIT_LENGTH 	3
 
+using namespace std;
+
 //memory usage statistics
 long memory_consume=0l;
 
