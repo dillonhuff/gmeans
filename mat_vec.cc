@@ -135,11 +135,12 @@ float Kullback_leibler(float *x, float *y, int n)
 {
   float result = 0.0;
   for (int i=0; i<n; i++)
-    if (x[i] >0.0)
+    if (x[i] >0.0) {
       if ( y[i] >0.0 )
 	result += x[i]*log(x[i]/y[i]);
       else
 	return HUGE_NUMBER;
+    }
   return result;
 }
 
