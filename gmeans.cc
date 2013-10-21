@@ -287,17 +287,16 @@ int main(int argc, char **argv)
   //////////////////////////////////////////////////////////////
 
   int final_cluster_num = n_Clusters;
-  
+
   Matrix *matrix;
   Gmeans *K;
   if ((format ==  DENSE_MATRIX) || (format ==  DENSE_MATRIX_TRANS))
     matrix = new DenseMatrix(d_mat.n_row, d_mat.n_col, d_mat.val); 
-  else 
+  else
     matrix = new SparseMatrix(mat.n_row, mat.n_col, mat.n_nz, mat.val, mat.row_ind, mat.col_ptr);
-  
+
   switch(alg)
     {
-    
     case DIAMETRIC_K_MEANS:
       matrix->normalize_mat_L2();
       break;
@@ -320,8 +319,7 @@ int main(int argc, char **argv)
     case SPHERICAL_K_MEANS:
     default:
       matrix->normalize_mat_L2();
-      break;    
-     
+      break;
     }
 
   if (up_bound <=n_Clusters)
@@ -337,10 +335,9 @@ int main(int argc, char **argv)
       cout <<"The number of first variations you asked for is greater than the number of data items. We adjust the number of clusters to be the number of data items."<<endl;
     }
   cluster = new int[matrix->GetNumCol()];
-  
+
   switch (alg)
     {
-    
     case DIAMETRIC_K_MEANS:
       K= new Diametric_k_means (matrix, cluster, n_Clusters, sim_est_start, Omiga, random_seeding, seeds, epsilon);
       break;
@@ -358,7 +355,7 @@ int main(int argc, char **argv)
       K= new Spherical_k_means (matrix, cluster, n_Clusters, sim_est_start, Omiga, random_seeding, seeds, epsilon);
       break;
     }
-  
+
   K->SetAlgorithm(alg);
   K->SetEmptyDocs(n_Empty_Docs, e_D_ID);
   K->setDumpinfo(dumpinfo);
@@ -370,15 +367,14 @@ int main(int argc, char **argv)
   K->SetEpsilon(epsilon);
   K->setDelta(delta);
   K->setEvaluate(evaluate_only);
- 
 
   if (init_method == RANDOM_PERTURB_INIT)
     K->SetPerturb(perturb);
 
   K->read_cate(pattern_file);
   K->open_dumpfile(dump_file);
-  K->general_means(matrix, up_bound, first_var_move_num,seeding_file);
-  
+  K->general_means(matrix, up_bound, first_var_move_num, seeding_file);
+
   coherence = K->GetResult();
 
   final_cluster_num = K->getClusterNum();
@@ -393,10 +389,9 @@ int main(int argc, char **argv)
   cout << "\nobjective function value: " << coherence << "\n\n"; 
   cout << "Final number of clusters : " << final_cluster_num << "\n";	
   cout << "Number of documents  : " << matrix->GetNumCol()<< "\n";
-  
+
   switch (alg)
     {
-    
     case SPHERICAL_K_MEANS:
       cout << "Algorithm            : spherical k-means\n";
       break;

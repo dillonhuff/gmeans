@@ -151,14 +151,13 @@ void Gmeans::general_means(Matrix *p_Docs, int up_bound, int f_v, char * seeding
   initialize_cv(p_Docs, seeding_file);
   n_Runs =0;
   mark = new int [f_v_times+i_k_means_times];
-  
+
   cout<<endl<<"Now clustering..."<<endl;
-  
+
   do
     {
       pre_Result = Result;
       n_Runs ++;
-      
       clear_mark();
       cout<<endl<<"* Run "<<n_Runs<<" *"<<endl;
       if ( skip_SPKM )
@@ -171,7 +170,7 @@ void Gmeans::general_means(Matrix *p_Docs, int up_bound, int f_v, char * seeding
 	cout<<"Verify obj. func. : "<<verify_obj_func(p_Docs,n_Clusters)<<endl;
       worst_vector = find_worst_vectors(dumped);
       dumped =false;
-      if ((f_v_times+i_k_means_times >0) && (n_Clusters >1))
+      if ((f_v_times+i_k_means_times > 0) && (n_Clusters > 1))
 	{
 	  pre_Result = Result;
 	  change=K_L_first_variation(p_Docs);
