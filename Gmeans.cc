@@ -48,17 +48,17 @@ Gmeans::Gmeans(Matrix *p_Docs, int cluster[], int ini_num_clusters, int sim_est_
   Concept_Vector = new VECTOR_double[n_Clusters];
   for (int i = 0; i < n_Clusters; i++)
     Concept_Vector[i] = new float[n_Words];
-  
+
   old_CV = new VECTOR_double[n_Clusters];
   for (int i = 0; i < n_Clusters; i++)
     old_CV[i] = new float[n_Words];
-  
+
   diff = new float[n_Clusters];
-  
+
   memory_consume+=n_Clusters*n_Words*sizeof(float)*2;
-  
+
   ClusterSize = new  int[n_Clusters];
-  
+
   memory_consume+=(n_Clusters*2+n_Docs)*sizeof(float);
 
   if(!random_seeding)
@@ -69,7 +69,6 @@ Gmeans::Gmeans(Matrix *p_Docs, int cluster[], int ini_num_clusters, int sim_est_
 
 Gmeans::~Gmeans()
 {
-  
   int i;
   for (i = 0; i < n_Clusters; i++)
     {
@@ -97,7 +96,7 @@ Gmeans::~Gmeans()
 void Gmeans::compute_cluster_size()
 {
   int i, k;
-  
+
   k=0;
   for (i = 0; i < n_Clusters; i++)
     ClusterSize[i] = 0;
@@ -131,7 +130,7 @@ float Gmeans::coherence(int n_clus)
     }
   */
   for (i = 0; i < n_clus; i++)
-    value +=cluster_quality[i]; 
+    value += cluster_quality[i]; 
   
   return value+n_clus*Omiga;
 }
@@ -140,12 +139,12 @@ void Gmeans::general_means(Matrix *p_Docs, int up_bound, int f_v, char * seeding
 {
   int n_Runs, worst_vector;
   float  change;
-  bool dumped=false;
+  bool dumped = false;
 
   stablized = false;
-  Result =0.0;
+  Result = 0.0;
   f_v_times = f_v;
-  if ((f_v_times>0) && (i_k_means_times>0))
+  if ((f_v_times > 0) && (i_k_means_times > 0))
     i_k_means_times =0;
 
   initialize_cv(p_Docs, seeding_file);
@@ -157,7 +156,7 @@ void Gmeans::general_means(Matrix *p_Docs, int up_bound, int f_v, char * seeding
   do
     {
       pre_Result = Result;
-      n_Runs ++;
+      n_Runs++;
       clear_mark();
       cout<<endl<<"* Run "<<n_Runs<<" *"<<endl;
       if ( skip_SPKM )
@@ -173,7 +172,7 @@ void Gmeans::general_means(Matrix *p_Docs, int up_bound, int f_v, char * seeding
       if ((f_v_times+i_k_means_times > 0) && (n_Clusters > 1))
 	{
 	  pre_Result = Result;
-	  change=K_L_first_variation(p_Docs);
+	  change = K_L_first_variation(p_Docs);
 	  Result += change;
 	  //if (dumpswitch && obj_inc.good())
 	  //  obj_inc<<"1\t0\t"<<Result<<"\t0\t0\t"<<Result<<endl;
@@ -183,7 +182,7 @@ void Gmeans::general_means(Matrix *p_Docs, int up_bound, int f_v, char * seeding
       if(change == 0)
 	 remove_Empty_Clusters();
       //if((fabs(change) <= FLOAT_ERROR) && (n_Clusters <up_bound))
-      if ((n_Clusters <up_bound) && (change ==0))
+      if ((n_Clusters < up_bound) && (change ==0))
 	{
 	  pre_Result = Result;
 	  change = Split_Clusters(p_Docs, worst_vector,  FLOAT_ERROR);

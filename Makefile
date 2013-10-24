@@ -11,8 +11,8 @@ CCFLAGS		= -Wall -g -O
 LDFLAGS		=
 INCLUDES	= -I/usr/include/g++
 OSTYPE		= linux
-SRCS = gmeans.cc Gmeans.cc mat_vec.cc RandomGenerator.cc SparseMatrix.cc DenseMatrix.cc tools.cc Spherical_k_means.cc Diametric_k_means.cc Euclidean_k_means.cc Kullback_leibler_k_means.cc IB.cc Matrix.cc 
-OBJS = gmeans.o Gmeans.o mat_vec.o RandomGenerator.o SparseMatrix.o  DenseMatrix.o tools.o Spherical_k_means.o Diametric_k_means.o Euclidean_k_means.o Kullback_leibler_k_means.o IB.o Matrix.o 
+SRCS = gmeans.cc Gmeans.cc mat_vec.cc RandomGenerator.cc SparseMatrix.cc DenseMatrix.cc tools.cc Spherical_k_means.cc Diametric_k_means.cc Euclidean_k_means.cc Kullback_leibler_k_means.cc IB.cc Matrix.cc FakeData.cc
+OBJS = gmeans.o Gmeans.o mat_vec.o RandomGenerator.o SparseMatrix.o  DenseMatrix.o tools.o Spherical_k_means.o Diametric_k_means.o Euclidean_k_means.o Kullback_leibler_k_means.o IB.o Matrix.o FakeData.o
 PM_OBJS = powermethod.o RandomGenerator.o
 
 .SUFFIXES: .c .cc .o

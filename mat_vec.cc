@@ -91,6 +91,12 @@ void dvec_scale( float alpha, int n, float *v )
 }
 */
 
+void copy_vec(float *dest, float *src, int n) {
+  int i;
+  for (i = 0; i < n; i++) {
+    dest[i] = src[i];
+  }
+}
 
 float normalize_vec(float vec[], int n)
 {
@@ -169,6 +175,13 @@ float dot_mult(float *v1, float *v2, int n)
   for (j = 0; j < n; j++)
     result += v1[j] * v2[j];
   return result;
+}
+
+void scalar_mult(float k, float *v, int n) {
+  int i;
+  for (i = 0; i < n; i++) {
+    v[i] = k*v[i];
+  }
 }
 
 float norm_2 (float vec[], int n)

@@ -20,7 +20,7 @@ Spherical_k_means::Spherical_k_means(Matrix *p_docs, int cluster[], int ini_num_
 {
   Sim_Mat = new VECTOR_double[n_Clusters];
   for (int j = 0; j < n_Clusters; j++)
-    Sim_Mat[j] = new float[n_Docs]; 
+    Sim_Mat[j] = new float[n_Docs];
   memory_consume+=n_Clusters*n_Docs*sizeof(float);
 
 }
@@ -45,7 +45,7 @@ void Spherical_k_means::general_k_means(Matrix *p_Docs)
 	stablized =true;
       if(dumpswitch && stablized)
 	cout <<"(Similarity estimation used.)"<<endl;
-      if ( assign_cluster(p_Docs, stablized) == 0 )
+      if (assign_cluster(p_Docs, stablized) == 0)
 	{
 	  if (dumpswitch)
 	    cout<<"No points are moved in the last step "<<endl<<"@"<<endl<<endl;
@@ -54,7 +54,7 @@ void Spherical_k_means::general_k_means(Matrix *p_Docs)
 	{
 	  compute_cluster_size();
 	  no_assignment_change = false;
-	  if( stablized)
+	  if(stablized)
 	    for (i = 0; i < n_Clusters; i++)
 	      for (j = 0; j < n_Words; j++)
 		old_CV[i][j] = Concept_Vector[i][j];
@@ -76,8 +76,8 @@ void Spherical_k_means::general_k_means(Matrix *p_Docs)
 	  else
 	    for (i = 0; i < n_Clusters; i++)
 	      p_Docs->trans_mult(Concept_Vector[i], Sim_Mat[i]);
-      
-	  Result = coherence(n_Clusters); 
+
+	  Result = coherence(n_Clusters);
 	  if(dumpswitch)
 	    {
 	      find_worst_vectors(false);
@@ -100,7 +100,7 @@ void Spherical_k_means::general_k_means(Matrix *p_Docs)
   if (stablized)
     for (i = 0; i < n_Clusters; i++)
       p_Docs->trans_mult(Concept_Vector[i], Sim_Mat[i]);
-  
+
   if ((!no_assignment_change) && (f_v_times >0))
     for (i=0; i<n_Clusters; i++)
       update_quality_change_mat(p_Docs, i);
@@ -162,12 +162,11 @@ int Spherical_k_means::assign_cluster(Matrix *p_Docs, bool simi_est)
 	    {
 	      temp_sim = Sim_Mat[Cluster[i]][i];
 	      temp_Cluster_ID = Cluster[i];
-	      
 	      for (j = 0; j < n_Clusters; j++)
 		if (j != Cluster[i])
 		  {
 		    multi++;
-		    if (Sim_Mat[j][i]>temp_sim )
+		    if (Sim_Mat[j][i]>temp_sim)
 		      {
 			temp_sim = Sim_Mat[j][i];
 			temp_Cluster_ID = j;

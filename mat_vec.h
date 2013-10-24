@@ -30,6 +30,7 @@ void dvec_l2normalize( int dim, float *v );
 void dvec_scale( float alpha, int n, float *v );
 */
 
+void copy_vec(float *v1, float *v2, int n);
 void average_vec(float vec[], int n, int num);
 float norm_2 (float vec[], int n);
 float norm_1(float *x, int n);
@@ -39,6 +40,7 @@ float Kullback_leibler(float *x, float *y, int n);
 float normalize_vec(float *vec, int n);
 float normalize_vec_1(float *vec, int n);
 float dot_mult(float *v1, float *v2, int n);
+void scalar_mult(float k, float *v, int n);
 void Ax (float **A, float *x, int dim1, int dim2, float *result);
 void Ax(float *vals, int *rowinds, int *colptrs, int dim1, int dim2, float *x, float *result);
 float x_dot_y(float *x, float *y, int dim1);
