@@ -447,7 +447,7 @@ void DenseMatrix::normalize_mat_L1()
 
 void DenseMatrix::ith_add_CV(int i, float *CV)
 {
-  for ( int j = 0; j < m_row; j++)
+  for (int j = 0; j < m_row; j++)
     CV[j] += m_val[j][i];
 }
 

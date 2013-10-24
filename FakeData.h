@@ -9,6 +9,7 @@
 class FakeData {
   public:
     void two_separable_clusters(Matrix *dest);
+    void uniform_rand_vec(float *v, int n);
 };
 
 #endif
