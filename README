@@ -5,8 +5,14 @@
 To compile: 
 make
 
-To remove .o and executable files:
+To compile tests and main testing routing:
+make gmeans-tests
+
+To remove .o and executable files for main program:
 make clean
+
+To remove .o and executable files for tests:
+make clean-tests
 
 To run:
 gmeans [switches] word-doc-file
